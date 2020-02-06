@@ -13,7 +13,7 @@ func saveImage(data []byte, filename string) error {
 		return err
 	}
 
-	return ioutil.WriteFile("./img/"+filename, []byte(data), 0644)
+	return ioutil.WriteFile("./img/"+filename, []byte(data), os.ModePerm)
 }
 
 func main() {
