@@ -93,3 +93,11 @@ func TestUnitVec(t *testing.T) {
 		t.Error("Unit vector is incorrect")
 	}
 }
+
+func TestColors(t *testing.T) {
+	a := Vec3{1, 2, 3}
+
+	if a.R() != 1 || a.G() != 2 || a.B() != 3 {
+		t.Error("Colors are incorrect")
+	}
+}
