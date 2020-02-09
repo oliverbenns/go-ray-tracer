@@ -1,42 +1,56 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
+	"image"
+	"image/color"
+	"image/png"
 	"os"
+	"time"
 )
 
-func saveImage(data []byte, filename string) error {
+func saveImage(img *image.RGBA, filename string) error {
 	err := os.MkdirAll("./img", os.ModePerm)
 
 	if err != nil {
 		return err
 	}
 
-	return ioutil.WriteFile("./img/"+filename, []byte(data), os.ModePerm)
+	file, err := os.Create("./img/" + filename)
+
+	if err != nil {
+		return err
+	}
+
+	defer file.Close()
+
+	return png.Encode(file, img)
 }
 
 func main() {
 	nx := 200
 	ny := 100
-	data := fmt.Sprint("P3\n", nx, " ", ny, "\n255\n")
+	img := image.NewRGBA(image.Rect(0, 0, nx, ny))
 
 	for j := ny - 1; j >= 0; j-- {
 		for i := 0; i < nx; i++ {
-			color := Vec3{
+			col := Vec3{
 				float64(i) / float64(nx),
-				float64(j) / float64(ny),
+				float64(ny-j-1) / float64(ny),
 				0.2,
 			}
 
-			ir := int64(255.99 * color.R())
-			ig := int64(255.99 * color.G())
-			ib := int64(255.99 * color.B())
-			data = fmt.Sprint(data, ir, " ", ig, " ", ib, "\n")
+			imageColor := color.RGBA64{
+				uint16(0xffff * col.R()),
+				uint16(0xffff * col.G()),
+				uint16(0xffff * col.B()),
+				0xffff,
+			}
+			img.Set(i, j, imageColor)
 		}
 	}
 
-	err := saveImage([]byte(data), "test.ppm")
+	filename := time.Now().Format(time.RFC3339) + ".png"
+	err := saveImage(img, filename)
 
 	if err != nil {
 		panic(err)
