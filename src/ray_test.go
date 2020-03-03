@@ -10,7 +10,7 @@ func TestPointAtParameter(t *testing.T) {
 	ray := Ray{origin, direction}
 	point := ray.PointAtParameter(0.5)
 
-	if point.x != 7 || point.y != 5.5 || point.z != 9 {
+	if !point.Equals(Vec3{7, 5.5, 9}) {
 		t.Error("PointAtParameter is incorrect")
 	}
 }
@@ -21,7 +21,7 @@ func TestPointAtParameterNeg(t *testing.T) {
 	ray := Ray{origin, direction}
 	point := ray.PointAtParameter(-1)
 
-	if point.x != -6 || point.y != -6 || point.z != -6 {
+	if !point.Equals(Vec3{-6, -6, -6}) {
 		t.Error("PointAtParameter is incorrect")
 	}
 }

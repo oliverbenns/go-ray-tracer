@@ -8,6 +8,10 @@ type Vec3 struct {
 	z float64
 }
 
+func (v *Vec3) Equals(w Vec3) bool {
+	return v.x == w.x && v.y == w.y && v.z == w.z
+}
+
 func (v Vec3) Add(w Vec3) Vec3 {
 	v.x += w.x
 	v.y += w.y
