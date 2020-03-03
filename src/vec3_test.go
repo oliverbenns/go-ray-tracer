@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestEquals(t *testing.T) {
+func TestVec3Equals(t *testing.T) {
 	a := Vec3{1, 2, 3}
 	b := Vec3{1, 2, 3}
 
@@ -13,7 +13,7 @@ func TestEquals(t *testing.T) {
 	}
 }
 
-func TestAdd(t *testing.T) {
+func TestVec3Add(t *testing.T) {
 	a := Vec3{1, 2, 3}
 	b := a.Add(Vec3{4, 5, 6})
 
@@ -22,7 +22,7 @@ func TestAdd(t *testing.T) {
 	}
 }
 
-func TestSub(t *testing.T) {
+func TestVec3Sub(t *testing.T) {
 	a := Vec3{6, 1, 3}
 	b := a.Sub(Vec3{2, 3, -3})
 
@@ -31,7 +31,7 @@ func TestSub(t *testing.T) {
 	}
 }
 
-func TestMult(t *testing.T) {
+func TestVec3Mult(t *testing.T) {
 	a := Vec3{2, 1, -4}
 	b := a.Mult(Vec3{4, 8, -2})
 
@@ -40,7 +40,7 @@ func TestMult(t *testing.T) {
 	}
 }
 
-func TestDiv(t *testing.T) {
+func TestVec3Div(t *testing.T) {
 	a := Vec3{6, 81, 16}
 	b := a.Div(Vec3{2, 9, 2})
 
@@ -49,7 +49,7 @@ func TestDiv(t *testing.T) {
 	}
 }
 
-func TestDot(t *testing.T) {
+func TestVec3Dot(t *testing.T) {
 	a := Vec3{7, 2, 5}
 	b := a.Dot(Vec3{1, 7, 4})
 
@@ -58,7 +58,7 @@ func TestDot(t *testing.T) {
 	}
 }
 
-func TestCross(t *testing.T) {
+func TestVec3Cross(t *testing.T) {
 	a := Vec3{8, 2, 4}
 	b := a.Cross(Vec3{5, 6, 2})
 
@@ -67,7 +67,7 @@ func TestCross(t *testing.T) {
 	}
 }
 
-func TestMultF(t *testing.T) {
+func TestVec3MultF(t *testing.T) {
 	a := Vec3{2, 1, 3}
 	b := a.MultF(4)
 
@@ -76,7 +76,7 @@ func TestMultF(t *testing.T) {
 	}
 }
 
-func TestDivF(t *testing.T) {
+func TestVec3DivF(t *testing.T) {
 	a := Vec3{4, 8, 32}
 	b := a.DivF(2)
 
@@ -85,7 +85,7 @@ func TestDivF(t *testing.T) {
 	}
 }
 
-func TestLen(t *testing.T) {
+func TestVec3Len(t *testing.T) {
 	a := Vec3{3, 4, 5}
 	b := a.Len()
 
@@ -94,19 +94,11 @@ func TestLen(t *testing.T) {
 	}
 }
 
-func TestUnitVec(t *testing.T) {
+func TestVec3UnitVec(t *testing.T) {
 	a := Vec3{16, 8, 2}
 	b := a.UnitVec()
 
 	if !b.Equals(Vec3{0.8888888888888888, 0.4444444444444444, 0.1111111111111111}) {
 		t.Error("Unit vector is incorrect")
-	}
-}
-
-func TestColors(t *testing.T) {
-	a := Vec3{1, 2, 3}
-
-	if a.R() != 1 || a.G() != 2 || a.B() != 3 {
-		t.Error("Colors are incorrect")
 	}
 }

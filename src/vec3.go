@@ -3,9 +3,7 @@ package main
 import "math"
 
 type Vec3 struct {
-	x float64
-	y float64
-	z float64
+	x, y, z float64
 }
 
 func (v *Vec3) Equals(w Vec3) bool {
@@ -73,18 +71,4 @@ func (v *Vec3) Len() float64 {
 
 func (v *Vec3) UnitVec() Vec3 {
 	return v.DivF(v.Len())
-}
-
-// Color getters
-// Might be worth sharing an interface and having 2 structs.
-func (v *Vec3) R() float64 {
-	return v.x
-}
-
-func (v *Vec3) G() float64 {
-	return v.y
-}
-
-func (v *Vec3) B() float64 {
-	return v.z
 }

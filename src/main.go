@@ -33,16 +33,16 @@ func main() {
 
 	for j := ny - 1; j >= 0; j-- {
 		for i := 0; i < nx; i++ {
-			col := Vec3{
+			col := Color{
 				float64(i) / float64(nx),
 				float64(ny-j-1) / float64(ny),
 				0.2,
-			}
+			}.MultF(0xffff)
 
 			imageColor := color.RGBA64{
-				uint16(0xffff * col.R()),
-				uint16(0xffff * col.G()),
-				uint16(0xffff * col.B()),
+				uint16(col.r),
+				uint16(col.g),
+				uint16(col.b),
 				0xffff,
 			}
 			img.Set(i, j, imageColor)
