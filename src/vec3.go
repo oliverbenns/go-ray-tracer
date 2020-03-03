@@ -8,43 +8,39 @@ type Vec3 struct {
 	z float64
 }
 
-func (v *Vec3) Add(w Vec3) Vec3 {
-	return Vec3{
-		v.x + w.x,
-		v.y + w.y,
-		v.z + w.z,
-	}
+func (v Vec3) Add(w Vec3) Vec3 {
+	v.x += w.x
+	v.y += w.y
+	v.z += w.z
+	return v
 }
 
-func (v *Vec3) Sub(w Vec3) Vec3 {
-	return Vec3{
-		v.x - w.x,
-		v.y - w.y,
-		v.z - w.z,
-	}
+func (v Vec3) Sub(w Vec3) Vec3 {
+	v.x -= w.x
+	v.y -= w.y
+	v.z -= w.z
+	return v
 }
 
-func (v *Vec3) Mult(w Vec3) Vec3 {
-	return Vec3{
-		v.x * w.x,
-		v.y * w.y,
-		v.z * w.z,
-	}
+func (v Vec3) Mult(w Vec3) Vec3 {
+	v.x *= w.x
+	v.y *= w.y
+	v.z *= w.z
+	return v
 }
 
-func (v *Vec3) Div(w Vec3) Vec3 {
-	return Vec3{
-		v.x / w.x,
-		v.y / w.y,
-		v.z / w.z,
-	}
+func (v Vec3) Div(w Vec3) Vec3 {
+	v.x /= w.x
+	v.y /= w.y
+	v.z /= w.z
+	return v
 }
 
 func (v *Vec3) Dot(w Vec3) float64 {
 	return v.x*w.x + v.y*w.y + v.z*w.z
 }
 
-func (v *Vec3) Cross(w Vec3) Vec3 {
+func (v Vec3) Cross(w Vec3) Vec3 {
 	return Vec3{
 		v.y*w.z - v.z*w.y,
 		v.z*w.x - v.x*w.z,
@@ -52,20 +48,19 @@ func (v *Vec3) Cross(w Vec3) Vec3 {
 	}
 }
 
-func (v *Vec3) MultF(s float64) Vec3 {
-	return Vec3{
-		v.x * s,
-		v.y * s,
-		v.z * s,
-	}
+func (v Vec3) MultF(s float64) Vec3 {
+	v.x *= s
+	v.y *= s
+	v.z *= s
+
+	return v
 }
 
-func (v *Vec3) DivF(s float64) Vec3 {
-	return Vec3{
-		v.x / s,
-		v.y / s,
-		v.z / s,
-	}
+func (v Vec3) DivF(s float64) Vec3 {
+	v.x /= s
+	v.y /= s
+	v.z /= s
+	return v
 }
 
 func (v *Vec3) Len() float64 {
