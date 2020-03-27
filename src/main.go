@@ -26,7 +26,21 @@ func saveImage(img *image.RGBA, filename string) error {
 	return png.Encode(file, img)
 }
 
+func hitSphere(center Vec3, radius float64, r *Ray) bool {
+	oc := r.origin.Sub(center)
+	a := r.direction.Dot(r.direction)
+	b := 2.0 * oc.Dot(r.direction)
+	c := oc.Dot(oc) - (radius * radius)
+	discriminant := b*b - 4*a*c
+
+	return discriminant > 0
+}
+
 func calculateColor(r *Ray) Color {
+	if hitSphere(Vec3{0, 0, -1}, 0.5, r) {
+		return Color{1, 0, 0}
+	}
+
 	unitDirection := r.direction.UnitVec()
 	t := 0.5 * (unitDirection.y + 1.0)
 	v := Vec3{1.0, 1.0, 1.0}.MultF(1.0 - t).Add(Vec3{0.5, 0.7, 1.0}.MultF(t))
